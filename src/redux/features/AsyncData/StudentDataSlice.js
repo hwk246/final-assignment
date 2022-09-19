@@ -44,7 +44,9 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     for (let i = 0; i < uniqueStudents.length; i++) {
       listByName[uniqueStudents[i]] = arrayByName[i];
     }
-    console.log(listByName);
+
+    console.log(arrayData);
+    // console.log(listByName["Evelyn"]);
 
     ///////////
     const courseFunFactor = [];

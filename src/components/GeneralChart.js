@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 
 const GeneralChart = () => {
   const data1 = useSelector((state) => state.reduxGetData.students);
-
   const data2 = useSelector((state) => state.reduxGetData.funFactor);
-
   const data3 = useSelector((state) => state.reduxGetData.difficultyFactor);
 
   return (
@@ -87,7 +85,7 @@ const GeneralChart = () => {
           },
         ]}
         type="bar" // "line" | "area" | "bar" | "histogram" | "pie" | "donut" | "radialBar" | "scatter" | "bubble" | "heatmap" | "treemap" | "boxPlot" | "candlestick" | "radar" | "polarArea" | "rangeBar"
-        width="90%"
+        height="550"
       />
     </div>
   );

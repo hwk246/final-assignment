@@ -6,6 +6,7 @@ import { getData } from "./redux/features/AsyncData/StudentDataSlice";
 import { useEffect } from "react";
 import Home from "./components/Home";
 import GeneralChart from "./components/GeneralChart";
+import Nav from "./components/Nav";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const App = () => {
     <LoadingSpinner />
   ) : (
     <div>
+      <Nav />
       <Home />
       <GeneralChart />
     </div>
