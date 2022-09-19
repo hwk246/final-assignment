@@ -67,9 +67,6 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
           }
         });
       }
-
-      const studentDifficult = [];
-      listByName.forEach((item) => console.log(item));
     }
 
     const courses = uniqueCourses,
