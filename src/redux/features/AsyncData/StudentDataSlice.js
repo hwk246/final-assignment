@@ -10,12 +10,15 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
       header: false,
       dynamicTyping: true,
     }).data.slice(1);
+
     ////////////////////// unique courses
+
     const allCourses = [];
     arrayData.forEach((element) => {
       allCourses.push(element[1]);
     });
     const uniqueCourses = [...new Set(allCourses)];
+
     /////////////////////// unique students
     const allStudents = [];
     arrayData.forEach((element) => {
@@ -23,37 +26,63 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     });
     const uniqueStudents = [...new Set(allStudents)];
     //////////////// avarage fun {course: avgFun}
+
     const arrayByCourse = [];
     uniqueCourses.forEach((course) =>
       arrayByCourse.push(arrayData.filter((element) => element[1] === course))
     );
-
     const listByCourse = {};
     for (let i = 0; i < uniqueCourses.length; i++) {
       listByCourse[uniqueCourses[i]] = arrayByCourse[i];
     }
 
-    /////////////////////////
     const arrayByName = [];
     uniqueStudents.forEach((student) =>
       arrayByName.push(arrayData.filter((element) => element[0] === student))
     );
-
     const listByName = {};
     for (let i = 0; i < uniqueStudents.length; i++) {
       listByName[uniqueStudents[i]] = arrayByName[i];
     }
-
-    console.log(listByCourse);
     console.log(listByName);
-    ////////////////////////////
+
+    ///////////
+    const courseFunFactor = [];
+    const courseDifficultyFactor = [];
+    for (let i = 2; i < 4; i++) {
+      for (const item in listByName) {
+        const tussenArray = [];
+        let counter = 0;
+        listByName[item].forEach((element) => {
+          tussenArray.push(element[i]);
+          counter++;
+          if (counter === listByName[item].length) {
+            const average =
+              tussenArray.reduce((base, item) => base + item, 0) /
+              tussenArray.length;
+            i === 2
+              ? courseFunFactor.push(average)
+              : courseDifficultyFactor.push(average);
+            counter = 0;
+          }
+        });
+      }
+
+      const studentDifficult = [];
+      listByName.forEach((item) => console.log(item));
+    }
 
     const courses = uniqueCourses,
       students = uniqueStudents,
-      nameList = listByName,
-      courseList = listByCourse;
+      funFactor = courseFunFactor,
+      difficultyFactor = courseDifficultyFactor;
 
-    return { courses, students, nameList, courseList };
+    return {
+      courses,
+      students,
+      funFactor,
+      difficultyFactor,
+    };
   } catch (error) {
     console.error(error);
   }
@@ -72,16 +101,15 @@ const getDataSlice = createSlice({
     },
 
     [getData.fulfilled]: (state, { payload }) => {
-      state.listByName = payload.nameList;
-      state.listByCourse = payload.courseList;
       state.courses = payload.courses;
       state.students = payload.students;
-      state.status = "oke";
+      state.funFactor = payload.funFactor;
+      state.difficultyFactor = payload.difficultyFactor;
       state.loading = false;
+      state.status = "oke";
     },
 
-    [getData.rejected]: (state, { payload }) => {
-      state.list = "empty";
+    [getData.rejected]: (state) => {
       state.status = "fucked";
     },
   },
