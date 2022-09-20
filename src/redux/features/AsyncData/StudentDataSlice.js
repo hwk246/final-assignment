@@ -45,7 +45,7 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
       listByName[uniqueStudents[i]] = arrayByName[i];
     }
 
-    console.log(arrayData);
+    // console.log(arrayData);
     // console.log(listByName["Evelyn"]);
 
     ///////////
