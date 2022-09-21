@@ -1,12 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import { useSelector } from "react-redux";
 
-const GeneralChart = () => {
-  const data1 = useSelector((state) => state.reduxGetData.students);
-  const data2 = useSelector((state) => state.reduxGetData.funFactor);
-  const data3 = useSelector((state) => state.reduxGetData.difficultyFactor);
-
+const GeneralChart = ({ xAxis, funData, difficultData }) => {
   const style = {
     display: "inlineBlock",
     alignText: "center",
@@ -58,7 +53,7 @@ const GeneralChart = () => {
           },
           xaxis: {
             tickPlacement: "on",
-            categories: data1,
+            categories: xAxis,
             labels: {
               style: { color: "#000", fontSize: 20 },
               offsetY: 2,
@@ -93,12 +88,12 @@ const GeneralChart = () => {
         series={[
           {
             name: "fun factor",
-            data: data2,
+            data: funData,
             color: "#00ff00",
           },
           {
             name: "dificulty factor",
-            data: data3,
+            data: difficultData,
             color: "#ff00f0",
           },
         ]}

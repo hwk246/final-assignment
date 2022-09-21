@@ -18,6 +18,11 @@ const App = () => {
   }, [dispatch]);
 
   const timer = useSelector((state) => state.reduxGetData.loading);
+  const students = useSelector((state) => state.reduxGetData.students);
+  const funData = useSelector((state) => state.reduxGetData.funFactor);
+  const difficultData = useSelector(
+    (state) => state.reduxGetData.difficultyFactor
+  );
 
   return timer ? (
     <LoadingSpinner />
@@ -35,7 +40,16 @@ const App = () => {
       </nav>
 
       <Routes>
-        <Route path="/" element={<GeneralChart />} />
+        <Route
+          path="/"
+          element={
+            <GeneralChart
+              xAxis={students}
+              funData={funData}
+              difficultData={difficultData}
+            />
+          }
+        />
         <Route path="/student" element={<StudentLayout />}>
           <Route index element={<StudentList />} />
           <Route path="/student/:id" element={<Student />} />

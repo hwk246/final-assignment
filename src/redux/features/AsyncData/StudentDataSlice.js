@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
 import Papa from "papaparse";
 
 export const getData = createAsyncThunk("getData/wsd1", async () => {
   // payload creator
   try {
-    const data = await fetch("wsd.csv");
+    const data = await fetch("../../../../wsd.csv");
     const textData = await data.text();
     const arrayData = Papa.parse(textData, {
       header: false,
@@ -27,28 +28,25 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     const uniqueStudents = [...new Set(allStudents)];
     //////////////// avarage fun {course: avgFun}
 
-    const arrayByCourse = [];
-    uniqueCourses.forEach((course) =>
-      arrayByCourse.push(arrayData.filter((element) => element[1] === course))
-    );
-    const listByCourse = {};
-    for (let i = 0; i < uniqueCourses.length; i++) {
-      listByCourse[uniqueCourses[i]] = arrayByCourse[i];
-    }
+    // const arrayByCourse = [];
+    // uniqueCourses.forEach((course) =>
+    //   arrayByCourse.push(arrayData.filter((element) => element[1] === course))
+    // );
+    // const listByCourse = {};
+    // for (let i = 0; i < uniqueCourses.length; i++) {
+    //   listByCourse[uniqueCourses[i]] = arrayByCourse[i];
+    // }
 
     const arrayByName = [];
     uniqueStudents.forEach((student) =>
       arrayByName.push(arrayData.filter((element) => element[0] === student))
     );
+
     const listByName = {};
     for (let i = 0; i < uniqueStudents.length; i++) {
       listByName[uniqueStudents[i]] = arrayByName[i];
     }
 
-    // console.log(arrayData);
-    // console.log(listByName["Evelyn"]);
-
-    ///////////
     const courseFunFactor = [];
     const courseDifficultyFactor = [];
     for (let i = 2; i < 4; i++) {
@@ -63,8 +61,8 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
               tussenArray.reduce((base, item) => base + item, 0) /
               tussenArray.length;
             i === 2
-              ? courseFunFactor.push(average)
-              : courseDifficultyFactor.push(average);
+              ? courseDifficultyFactor.push(average)
+              : courseFunFactor.push(average);
             counter = 0;
           }
         });
@@ -74,13 +72,15 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     const courses = uniqueCourses,
       students = uniqueStudents,
       funFactor = courseFunFactor,
-      difficultyFactor = courseDifficultyFactor;
+      difficultyFactor = courseDifficultyFactor,
+      totalByName = listByName;
 
     return {
       courses,
       students,
       funFactor,
       difficultyFactor,
+      totalByName,
     };
   } catch (error) {
     console.error(error);
@@ -100,6 +100,7 @@ const getDataSlice = createSlice({
     },
 
     [getData.fulfilled]: (state, { payload }) => {
+      state.listByName = payload.totalByName;
       state.courses = payload.courses;
       state.students = payload.students;
       state.funFactor = payload.funFactor;

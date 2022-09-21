@@ -1,7 +1,11 @@
 import React from "react";
 
 const StudentList = () => {
-  return <h1>Student List</h1>;
+  return (
+    <>
+      <h2>Student List</h2>;
+    </>
+  );
 };
 
 export default StudentList;

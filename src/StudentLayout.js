@@ -11,7 +11,9 @@ const StudentLayout = () => {
       <Link to="/student/Floris">Floris</Link>
       <br />
       <Link to="/student/new">New</Link>
-      <Outlet />
+      <div style={{ color: "gray" }}>
+        <Outlet context={" ---> Outlet context if needed"} />
+      </div>
     </>
   );
 };

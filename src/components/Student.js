@@ -1,13 +1,38 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import GeneralChart from "./GeneralChart";
 
 const Student = () => {
   const { id } = useParams();
+  const object = useOutletContext();
+
+  const xAxis = useSelector((state) => state.reduxGetData.courses);
+  const dataListByName = useSelector(
+    (state) => state.reduxGetData.listByName[id]
+  );
+
+  const funData = [];
+  dataListByName.forEach((element) => {
+    funData.push(element[3]);
+  });
+
+  const difficultData = [];
+  dataListByName.forEach((element) => {
+    difficultData.push(element[2]);
+  });
+
   return (
     <div>
-      <h1>Overview of scores {id}</h1>
-      <GeneralChart />
+      <h1>
+        Overview of scores {id} {object}
+      </h1>
+
+      <GeneralChart
+        xAxis={xAxis}
+        funData={funData}
+        difficultData={difficultData}
+      />
     </div>
   );
 };
