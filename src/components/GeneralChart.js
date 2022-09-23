@@ -1,10 +1,12 @@
 import React from "react";
 import Chart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
-const GeneralChart = ({ xAxis, funData, difficultData }) => {
+const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
+  const mode = useSelector((state) => state.reduxChart.graphMode);
+  const graphType = useSelector((state) => state.reduxChart.graphType);
+
   const style = {
-    display: "inlineBlock",
-    alignText: "center",
     border: "2px solid black",
     borderRadius: 5,
   };
@@ -12,20 +14,25 @@ const GeneralChart = ({ xAxis, funData, difficultData }) => {
     <div style={style}>
       <Chart
         options={{
-          theme: { mode: "dark" },
+          // theme: { mode: "dark" },
           chart: {
-            stacked: false,
-            id: "HomeChart",
-            background: "#00eedd",
-            offsetX: 0,
+            // toolbar: { show: true },
+            stacked: mode,
+            // id: "HomeChart",
+            // tools: {
+            //   zoom: true,
+            //   zoomin: true,
+            //   pan: true,
+            //   reset: true,
+            // },
           },
           plotOptions: {
             bar: {
               borderRadius: 5,
-              columnWidth: 90,
-              dataLabels: {
-                orientation: "vertical",
-              },
+              // columnWidth: 90,
+              // dataLabels: {
+              //   orientation: "vertical",
+              // },
             },
           },
           tooltip: { followCursor: true },
@@ -38,68 +45,78 @@ const GeneralChart = ({ xAxis, funData, difficultData }) => {
           },
 
           yaxis: {
+            min: 0,
+            max: 5,
+            tickAmount: 5,
             labels: {
-              formatter: (val) => {
-                return `${val}`;
-              },
-              style: { colors: ["#000"], fontSize: 20 },
-              offsetX: -5,
+              // formatter: (val) => {
+              //   return `${val}`;
+              // },
+              style: { colors: ["#000"], fontSize: 15 },
+              offsetX: `0`,
             },
             title: {
               text: "AVERAGE",
-              style: { color: "#AAFF00", fontSize: 20 },
-              offsetX: -9,
+              style: { color: "##1e81b0", fontSize: 15 },
+              offsetX: -5,
             },
           },
+          //
           xaxis: {
-            tickPlacement: "on",
+            // tickPlacement: "on",
             categories: xAxis,
             labels: {
-              style: { color: "#000", fontSize: 20 },
+              // trim: false,
+              rotate: "-65",
+              style: { color: "#000", fontSize: 15 },
               offsetY: 2,
             },
             title: {
               text: "",
-              style: { color: "#aaff00", fontSize: 20 },
+              style: { color: "##063970", fontSize: 20 },
               offsetY: -20,
             },
           },
           legend: {
             show: "true",
-            position: "right",
-            width: 110,
-            height: 50,
-            offsetY: 20,
+            // position: "bottom",
+
+            // width: 110,
+            // height: 70,
+            offsetX: -1200,
           },
           title: {
-            text: "AVARAGE FUN & DIFFICULTY",
+            text: title,
             align: "center",
-            style: { fontSize: 30 },
+            style: { fontSize: 25 },
           },
           subtitle: {
-            text: "Fun & Frustration",
+            text: subtitle,
             align: "center",
             offsetY: 35,
-            offsetX: 100,
+
             style: { fontSize: 20, color: "red" },
           },
-          grid: { borderColor: "blue" },
+          grid: { borderColor: "#ababab" },
         }}
         series={[
           {
             name: "fun factor",
             data: funData,
-            color: "#00ff00",
+            color: "#69bdd2",
           },
           {
             name: "dificulty factor",
             data: difficultData,
-            color: "#ff00f0",
+            color: "#dfc8a2",
           },
         ]}
-        type="bar" // "line" | "area" | "bar" | "histogram" | "pie" | "donut" | "radialBar" | "scatter" | "bubble" | "heatmap" | "treemap" | "boxPlot" | "candlestick" | "radar" | "polarArea" | "rangeBar"
-        height="550"
-        width="100%"
+        type={graphType} // "line" | "area" | "bar" | "histogram" | "pie" | "donut" | "radialBar" | "scatter" | "bubble" | "heatmap" | "treemap" | "boxPlot" | "candlestick" | "radar" | "polarArea" | "rangeBar"
+        // height="550"
+        // align="center"
+
+        width="98%"
+        height={"450px"}
         align="center"
       />
     </div>

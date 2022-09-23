@@ -10,6 +10,7 @@ import NewStudent from "./components/NewStudent";
 import { Routes, Route, Link } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import StudentLayout from "./StudentLayout";
+import ChangeMode from "./components/ChangeMode";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const App = () => {
   }, [dispatch]);
 
   const timer = useSelector((state) => state.reduxGetData.loading);
-  const students = useSelector((state) => state.reduxGetData.students);
+  const courses = useSelector((state) => state.reduxGetData.courses);
   const funData = useSelector((state) => state.reduxGetData.funFactor);
   const difficultData = useSelector(
     (state) => state.reduxGetData.difficultyFactor
@@ -28,13 +29,17 @@ const App = () => {
     <LoadingSpinner />
   ) : (
     <>
-      <nav>
+      <nav style={{ border: "3px solid black", marginBottom: "35px" }}>
         <ul style={{ listStyle: "none", fontSize: 20 }}>
           <li>
-            <Link to="/">Homepage</Link>
+            <Link style={{ textDecoration: "none" }} to="/">
+              Homepage
+            </Link>
           </li>
           <li>
-            <Link to="/student">Student</Link>
+            <Link style={{ textDecoration: "none" }} to="/student">
+              Student
+            </Link>
           </li>
         </ul>
       </nav>
@@ -44,19 +49,24 @@ const App = () => {
           path="/"
           element={
             <GeneralChart
-              xAxis={students}
+              xAxis={courses}
               funData={funData}
               difficultData={difficultData}
+              title={"Avarage Difficulty & Fun"}
+              subtitle={"all students"}
             />
           }
         />
         <Route path="/student" element={<StudentLayout />}>
           <Route index element={<StudentList />} />
-          <Route path="/student/:id" element={<Student />} />
-          <Route path="/student/new" element={<NewStudent />} />
+          <Route path=":id" element={<Student />} />
+          <Route path="new" element={<NewStudent />} />
         </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
+
+      <ChangeMode />
     </>
   );
 };

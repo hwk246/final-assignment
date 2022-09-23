@@ -5,7 +5,7 @@ import GeneralChart from "./GeneralChart";
 
 const Student = () => {
   const { id } = useParams();
-  const object = useOutletContext();
+  // const object = useOutletContext();
 
   const xAxis = useSelector((state) => state.reduxGetData.courses);
   const dataListByName = useSelector(
@@ -24,14 +24,16 @@ const Student = () => {
 
   return (
     <div>
-      <h1>
+      {/* <h1>
         Overview of scores {id} {object}
-      </h1>
+      </h1> */}
 
       <GeneralChart
         xAxis={xAxis}
         funData={funData}
         difficultData={difficultData}
+        title={`Individual scores `}
+        subtitle={id}
       />
     </div>
   );

@@ -1,13 +1,4 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const utils = (props) => {
-  const allCourses = [];
-  arrayData.forEach((element) => {
-    allCourses.push(element[1]);
-  });
-  const uniqueCourses = [...new Set(allCourses)];
-
-  return <div></div>;
-};
-
-export default utils;
+export const utils = () => {};

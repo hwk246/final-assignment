@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
 import Papa from "papaparse";
 
 export const getData = createAsyncThunk("getData/wsd1", async () => {
@@ -28,14 +27,14 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     const uniqueStudents = [...new Set(allStudents)];
     //////////////// avarage fun {course: avgFun}
 
-    // const arrayByCourse = [];
-    // uniqueCourses.forEach((course) =>
-    //   arrayByCourse.push(arrayData.filter((element) => element[1] === course))
-    // );
-    // const listByCourse = {};
-    // for (let i = 0; i < uniqueCourses.length; i++) {
-    //   listByCourse[uniqueCourses[i]] = arrayByCourse[i];
-    // }
+    const arrayByCourse = [];
+    uniqueCourses.forEach((course) =>
+      arrayByCourse.push(arrayData.filter((element) => element[1] === course))
+    );
+    const listByCourse = {};
+    for (let i = 0; i < uniqueCourses.length; i++) {
+      listByCourse[uniqueCourses[i]] = arrayByCourse[i];
+    }
 
     const arrayByName = [];
     uniqueStudents.forEach((student) =>
@@ -49,20 +48,53 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
 
     const courseFunFactor = [];
     const courseDifficultyFactor = [];
+
+    ///////// All course average.
+    for (let i = 2; i < 4; i++) {
+      for (const item in listByCourse) {
+        const tussenArray = [];
+        let counter = 0;
+        listByCourse[item].forEach((element) => {
+          tussenArray.push(element[i]);
+          counter++;
+          if (counter === listByCourse[item].length) {
+            const average = parseFloat(
+              (
+                tussenArray.reduce((base, item) => base + item, 0) /
+                tussenArray.length
+              ).toFixed(1)
+            );
+            i === 2
+              ? courseDifficultyFactor.push(average)
+              : courseFunFactor.push(average);
+            counter = 0;
+          }
+        });
+      }
+    }
+
+    const courseFunPerStudent = [];
+    const courseDifficultyPerStudent = [];
+
+    ////////// average for every student / all courses.
     for (let i = 2; i < 4; i++) {
       for (const item in listByName) {
         const tussenArray = [];
         let counter = 0;
         listByName[item].forEach((element) => {
           tussenArray.push(element[i]);
+
           counter++;
           if (counter === listByName[item].length) {
-            const average =
-              tussenArray.reduce((base, item) => base + item, 0) /
-              tussenArray.length;
+            const average = parseFloat(
+              (
+                tussenArray.reduce((base, item) => base + item, 0) /
+                tussenArray.length
+              ).toFixed(1)
+            );
             i === 2
-              ? courseDifficultyFactor.push(average)
-              : courseFunFactor.push(average);
+              ? courseDifficultyPerStudent.push(average)
+              : courseFunPerStudent.push(average);
             counter = 0;
           }
         });
@@ -73,7 +105,9 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
       students = uniqueStudents,
       funFactor = courseFunFactor,
       difficultyFactor = courseDifficultyFactor,
-      totalByName = listByName;
+      totalByName = listByName,
+      funPerStudent = courseFunPerStudent,
+      difficultPerStudent = courseDifficultyPerStudent;
 
     return {
       courses,
@@ -81,6 +115,8 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
       funFactor,
       difficultyFactor,
       totalByName,
+      funPerStudent,
+      difficultPerStudent,
     };
   } catch (error) {
     console.error(error);
@@ -105,6 +141,9 @@ const getDataSlice = createSlice({
       state.students = payload.students;
       state.funFactor = payload.funFactor;
       state.difficultyFactor = payload.difficultyFactor;
+      state.funPerStudent = payload.funPerStudent;
+      state.difficultPerStudent = payload.difficultPerStudent;
+
       state.loading = false;
       state.status = "oke";
     },
