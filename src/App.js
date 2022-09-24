@@ -11,6 +11,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import StudentLayout from "./StudentLayout";
 import ChangeMode from "./components/ChangeMode";
+import TestComponent from "./components/TestComponent";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,10 +30,10 @@ const App = () => {
     <LoadingSpinner />
   ) : (
     <>
-      <nav style={{ border: "3px solid black", marginBottom: "35px" }}>
-        <ul style={{ listStyle: "none", fontSize: 20 }}>
-          <li>
-            <Link style={{ textDecoration: "none" }} to="/">
+      <nav style={{ borderBottom: "1px solid gray", marginBottom: "25px" }}>
+        <ul style={{ listStyle: "none", fontSize: 20, cursor: "pointer" }}>
+          <li style={{ marginBottom: 10 }}>
+            <Link style={{ textDecoration: "none", marginBottom: 5 }} to="/">
               Homepage
             </Link>
           </li>
@@ -41,8 +42,14 @@ const App = () => {
               Student
             </Link>
           </li>
+          {/* <li>
+            <Link to="/test">Test</Link>
+          </li> */}
         </ul>
       </nav>
+      <div style={{ position: "absolute", top: 70, right: 60 }}>
+        <ChangeMode />
+      </div>
 
       <Routes>
         <Route
@@ -53,7 +60,7 @@ const App = () => {
               funData={funData}
               difficultData={difficultData}
               title={"Avarage Difficulty & Fun"}
-              subtitle={"all students"}
+              subtitle={"All students per assignment"}
             />
           }
         />
@@ -62,11 +69,10 @@ const App = () => {
           <Route path=":id" element={<Student />} />
           <Route path="new" element={<NewStudent />} />
         </Route>
+        <Route path="/test" element={<TestComponent />}></Route>
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-
-      <ChangeMode />
     </>
   );
 };

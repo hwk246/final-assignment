@@ -1,7 +1,8 @@
 import React from "react";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import GeneralChart from "./GeneralChart";
+import PersonalInfo from "./PersonalInfo";
 
 const Student = () => {
   const { id } = useParams();
@@ -28,12 +29,14 @@ const Student = () => {
         Overview of scores {id} {object}
       </h1> */}
 
+      <PersonalInfo id={id} />
+
       <GeneralChart
         xAxis={xAxis}
         funData={funData}
         difficultData={difficultData}
         title={`Individual scores `}
-        subtitle={id}
+        subtitle={""}
       />
     </div>
   );

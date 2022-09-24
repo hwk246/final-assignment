@@ -3,18 +3,14 @@ import Chart from "react-apexcharts";
 import { useSelector } from "react-redux";
 
 const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
-  const mode = useSelector((state) => state.reduxChart.graphMode);
+  const mode = useSelector((state) => state.reduxChart.graphStacked);
   const graphType = useSelector((state) => state.reduxChart.graphType);
 
-  const style = {
-    border: "2px solid black",
-    borderRadius: 5,
-  };
   return (
-    <div style={style}>
+    <div style={{ borderBottom: "1px solid gray" }}>
       <Chart
         options={{
-          // theme: { mode: "dark" },
+          theme: { mode: "light" },
           chart: {
             // toolbar: { show: true },
             stacked: mode,
@@ -28,8 +24,9 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
           },
           plotOptions: {
             bar: {
-              borderRadius: 5,
-              // columnWidth: 90,
+              // borderRadius: 1,
+              columnWidth: 70,
+
               // dataLabels: {
               //   orientation: "vertical",
               // },
@@ -57,7 +54,7 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
             },
             title: {
               text: "AVERAGE",
-              style: { color: "##1e81b0", fontSize: 15 },
+              style: { color: "#1e81b0", fontSize: 14 },
               offsetX: -5,
             },
           },
@@ -68,7 +65,7 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
             labels: {
               // trim: false,
               rotate: "-65",
-              style: { color: "#000", fontSize: 15 },
+              style: { color: "#000", fontSize: 15, fontWeight: "bold" },
               offsetY: 2,
             },
             title: {
@@ -80,22 +77,22 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
           legend: {
             show: "true",
             // position: "bottom",
-
             // width: 110,
             // height: 70,
-            offsetX: -1200,
+            offsetX: 0,
+            offsetY: 5,
           },
           title: {
             text: title,
             align: "center",
-            style: { fontSize: 25 },
+            style: { fontSize: 22 },
           },
           subtitle: {
             text: subtitle,
             align: "center",
-            offsetY: 35,
+            offsetY: 25,
 
-            style: { fontSize: 20, color: "red" },
+            style: { fontSize: 20, color: "#1e81b0" },
           },
           grid: { borderColor: "#ababab" },
         }}
@@ -103,20 +100,18 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
           {
             name: "fun factor",
             data: funData,
-            color: "#69bdd2",
+            type: graphType,
+            color: "#6fbdfa",
           },
           {
             name: "dificulty factor",
             data: difficultData,
-            color: "#dfc8a2",
+            type: graphType,
+            color: "#dfcfa2",
           },
         ]}
-        type={graphType} // "line" | "area" | "bar" | "histogram" | "pie" | "donut" | "radialBar" | "scatter" | "bubble" | "heatmap" | "treemap" | "boxPlot" | "candlestick" | "radar" | "polarArea" | "rangeBar"
-        // height="550"
-        // align="center"
-
-        width="98%"
-        height={"450px"}
+        width="95%"
+        height={"480px"}
         align="center"
       />
     </div>

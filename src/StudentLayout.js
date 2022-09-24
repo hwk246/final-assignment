@@ -7,9 +7,17 @@ const StudentLayout = () => {
 
   return (
     <div>
-      <div style={{ position: "absolute", top: 60, right: 20 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          position: "absolute",
+          bottom: 50,
+          right: 320,
+        }}
+      >
         {studentName.map((student, index) => (
-          <button key={index} style={{ margin: 5 }}>
+          <button key={index} style={{ border: "1px solid gray", margin: 5 }}>
             <Link
               style={{
                 textDecoration: "none",

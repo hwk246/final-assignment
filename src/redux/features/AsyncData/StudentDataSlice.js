@@ -19,6 +19,10 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     });
     const uniqueCourses = [...new Set(allCourses)];
 
+    const uniqueCoursesShort = uniqueCourses.map((coursNameLong) =>
+      coursNameLong.length > 6 ? coursNameLong.slice(16) : coursNameLong
+    );
+
     /////////////////////// unique students
     const allStudents = [];
     arrayData.forEach((element) => {
@@ -101,7 +105,7 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
       }
     }
 
-    const courses = uniqueCourses,
+    const courses = uniqueCoursesShort,
       students = uniqueStudents,
       funFactor = courseFunFactor,
       difficultyFactor = courseDifficultyFactor,

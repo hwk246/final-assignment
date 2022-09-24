@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const homeChartSlice = createSlice({
   name: "reduxChart",
-  initialState: { graphMode: false, graphType: "bar" },
+  initialState: { graphStacked: false, graphType: "bar" },
 
   reducers: {
-    graphMode: (state) => {
-      state.graphMode = !state.graphMode;
+    graphStacked: (state) => {
+      state.graphStacked = !state.graphStacked;
     },
 
     graphType: (state, { payload }) => {
@@ -16,4 +16,4 @@ const homeChartSlice = createSlice({
 });
 
 export default homeChartSlice.reducer;
-export const { graphMode, graphType } = homeChartSlice.actions;
+export const { graphStacked, graphType } = homeChartSlice.actions;
