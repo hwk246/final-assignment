@@ -3,7 +3,7 @@ import { studentPersonal } from "../personal";
 
 const PersonalInfo = (id) => {
   const studentInfo = studentPersonal.filter((item) => item.name === id.id);
-  console.log(studentInfo);
+
   return (
     <div
       style={{
@@ -12,7 +12,7 @@ const PersonalInfo = (id) => {
         alignItems: "center",
         position: "absolute",
         top: 20,
-        right: 300,
+        left: 300,
         zIndex: 1,
         width: 250,
         boxShadow: "1px 1px 10px gray",
@@ -20,7 +20,7 @@ const PersonalInfo = (id) => {
     >
       <div style={{ marginRight: 10 }}>
         <img
-          style={{ height: 90 }}
+          style={{ height: 90, marginLeft: 10 }}
           src={studentInfo[0].picture}
           alt="person"
         ></img>
@@ -30,7 +30,7 @@ const PersonalInfo = (id) => {
           {studentInfo[0].name} {studentInfo[0].surname}
         </h4>
         <h5> {studentInfo[0].email}</h5>
-        <h5>{studentInfo[0].telephon}</h5>
+        <h5>{studentInfo[0].telephone}</h5>
       </div>
     </div>
   );

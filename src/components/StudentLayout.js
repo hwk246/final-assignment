@@ -10,10 +10,15 @@ const StudentLayout = () => {
       <div
         style={{
           display: "flex",
+          float: "right",
+          width: "70%",
           flexDirection: "row",
+          justifyContent: "space-between",
+          // alignItems: "center",
           position: "absolute",
+          // border: "1px solid gray",
           bottom: 50,
-          right: 320,
+          // right: 320,
         }}
       >
         {studentName.map((student, index) => (

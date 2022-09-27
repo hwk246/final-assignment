@@ -11,7 +11,12 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
       dynamicTyping: true,
     }).data.slice(1);
 
-    ////////////////////// unique courses
+    const allStudents = [];
+    arrayData.forEach((element) => {
+      allStudents.push(element[0]);
+    });
+
+    const uniqueStudents = [...new Set(allStudents)];
 
     const allCourses = [];
     arrayData.forEach((element) => {
@@ -22,14 +27,6 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     const uniqueCoursesShort = uniqueCourses.map((coursNameLong) =>
       coursNameLong.length > 6 ? coursNameLong.slice(16) : coursNameLong
     );
-
-    /////////////////////// unique students
-    const allStudents = [];
-    arrayData.forEach((element) => {
-      allStudents.push(element[0]);
-    });
-    const uniqueStudents = [...new Set(allStudents)];
-    //////////////// avarage fun {course: avgFun}
 
     const arrayByCourse = [];
     uniqueCourses.forEach((course) =>
@@ -50,11 +47,15 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
       listByName[uniqueStudents[i]] = arrayByName[i];
     }
 
+    for (const item in listByName) {
+      listByName[item].forEach((total) => total.shift());
+    }
+
     const courseFunFactor = [];
     const courseDifficultyFactor = [];
 
     ///////// All course average.
-    for (let i = 2; i < 4; i++) {
+    for (let i = 1; i < 3; i++) {
       for (const item in listByCourse) {
         const tussenArray = [];
         let counter = 0;
@@ -68,7 +69,7 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
                 tussenArray.length
               ).toFixed(1)
             );
-            i === 2
+            i === 1
               ? courseDifficultyFactor.push(average)
               : courseFunFactor.push(average);
             counter = 0;
@@ -77,11 +78,20 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
       }
     }
 
-    const courseFunPerStudent = [];
-    const courseDifficultyPerStudent = [];
+    const crsFunAndDiffAvg = [];
+    uniqueCoursesShort.forEach((crs, index) => {
+      crsFunAndDiffAvg.push([
+        crs,
+        courseDifficultyFactor[index],
+        courseFunFactor[index],
+      ]);
+    });
 
-    ////////// average for every student / all courses.
-    for (let i = 2; i < 4; i++) {
+    const studentFunFactor = [];
+    const studentDifficultyFactor = [];
+
+    ////////// average of all courses for every student
+    for (let i = 1; i < 3; i++) {
       for (const item in listByName) {
         const tussenArray = [];
         let counter = 0;
@@ -96,31 +106,33 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
                 tussenArray.length
               ).toFixed(1)
             );
-            i === 2
-              ? courseDifficultyPerStudent.push(average)
-              : courseFunPerStudent.push(average);
+            i === 1
+              ? studentDifficultyFactor.push(average)
+              : studentFunFactor.push(average);
             counter = 0;
           }
         });
       }
     }
+    const stdFunAndDiffAvg = [];
+    uniqueStudents.forEach((std, index) => {
+      stdFunAndDiffAvg.push([
+        std,
+        studentDifficultyFactor[index],
+        studentFunFactor[index],
+      ]);
+    });
 
-    const courses = uniqueCoursesShort,
-      students = uniqueStudents,
-      funFactor = courseFunFactor,
-      difficultyFactor = courseDifficultyFactor,
+    const students = uniqueStudents,
       totalByName = listByName,
-      funPerStudent = courseFunPerStudent,
-      difficultPerStudent = courseDifficultyPerStudent;
+      avgStudentFunAndDiff = stdFunAndDiffAvg,
+      avgCourseFunAndDiff = crsFunAndDiffAvg;
 
     return {
-      courses,
       students,
-      funFactor,
-      difficultyFactor,
       totalByName,
-      funPerStudent,
-      difficultPerStudent,
+      avgStudentFunAndDiff,
+      avgCourseFunAndDiff,
     };
   } catch (error) {
     console.error(error);
@@ -132,6 +144,8 @@ const getDataSlice = createSlice({
   initialState: {
     status: "oke",
     loading: true,
+    avgStudFunAndDiff: [],
+    avgCourseFunAndDiff: [],
   },
 
   extraReducers: {
@@ -141,13 +155,9 @@ const getDataSlice = createSlice({
 
     [getData.fulfilled]: (state, { payload }) => {
       state.listByName = payload.totalByName;
-      state.courses = payload.courses;
       state.students = payload.students;
-      state.funFactor = payload.funFactor;
-      state.difficultyFactor = payload.difficultyFactor;
-      state.funPerStudent = payload.funPerStudent;
-      state.difficultPerStudent = payload.difficultPerStudent;
-
+      state.avgStudFunAndDiff = payload.avgStudentFunAndDiff;
+      state.avgCrsFunAndDiff = payload.avgCourseFunAndDiff;
       state.loading = false;
       state.status = "oke";
     },

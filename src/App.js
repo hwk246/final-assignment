@@ -9,9 +9,8 @@ import Student from "./components/Student";
 import NewStudent from "./components/NewStudent";
 import { Routes, Route, Link } from "react-router-dom";
 import NotFound from "./components/NotFound";
-import StudentLayout from "./StudentLayout";
+import StudentLayout from "./components/StudentLayout";
 import ChangeMode from "./components/ChangeMode";
-import TestComponent from "./components/TestComponent";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,10 +19,8 @@ const App = () => {
   }, [dispatch]);
 
   const timer = useSelector((state) => state.reduxGetData.loading);
-  const courses = useSelector((state) => state.reduxGetData.courses);
-  const funData = useSelector((state) => state.reduxGetData.funFactor);
-  const difficultData = useSelector(
-    (state) => state.reduxGetData.difficultyFactor
+  const CourseAvgData = useSelector(
+    (state) => state.reduxGetData.avgCrsFunAndDiff
   );
 
   return timer ? (
@@ -42,9 +39,6 @@ const App = () => {
               Student
             </Link>
           </li>
-          {/* <li>
-            <Link to="/test">Test</Link>
-          </li> */}
         </ul>
       </nav>
       <div style={{ position: "absolute", top: 70, right: 60 }}>
@@ -56,9 +50,7 @@ const App = () => {
           path="/"
           element={
             <GeneralChart
-              xAxis={courses}
-              funData={funData}
-              difficultData={difficultData}
+              dataXY={CourseAvgData}
               title={"Avarage Difficulty & Fun"}
               subtitle={"All students per assignment"}
             />
@@ -69,7 +61,6 @@ const App = () => {
           <Route path=":id" element={<Student />} />
           <Route path="new" element={<NewStudent />} />
         </Route>
-        <Route path="/test" element={<TestComponent />}></Route>
 
         <Route path="*" element={<NotFound />} />
       </Routes>

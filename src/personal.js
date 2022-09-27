@@ -3,7 +3,7 @@ export const studentPersonal = [
     name: "Evelyn",
     surname: "Elsinga",
     email: "evelyn@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://i.pinimg.com/236x/72/c6/12/72c61278fb179d92da27efc2c54ba8c5--portrait-art-portrait-paintings.jpg",
   },
@@ -11,7 +11,7 @@ export const studentPersonal = [
     name: "Aranka",
     surname: "Anders",
     email: "Aranka@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://i.pinimg.com/236x/72/c6/12/72c61278fb179d92da27efc2c54ba8c5--portrait-art-portrait-paintings.jpg",
   },
@@ -19,7 +19,7 @@ export const studentPersonal = [
     name: "Floris",
     surname: "Fonteyn",
     email: "Floris@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://cdn.shopify.com/s/files/1/1132/3228/products/CUstom-oil-portrait-fine-art-gift-for-men-boyfriend-husband-fiance-anniversary-gift-wedding-birthday-original-artwork-custom-art--Maria-Waye-Artist-in-Toronto-Canada-1_300c5ad6-9425-4497-87a7-6574a6cc2622.jpg?v=1482148808",
   },
@@ -27,7 +27,7 @@ export const studentPersonal = [
     name: "Hector",
     surname: "Huisman",
     email: "hector@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://cdn.shopify.com/s/files/1/1132/3228/products/CUstom-oil-portrait-fine-art-gift-for-men-boyfriend-husband-fiance-anniversary-gift-wedding-birthday-original-artwork-custom-art--Maria-Waye-Artist-in-Toronto-Canada-1_300c5ad6-9425-4497-87a7-6574a6cc2622.jpg?v=1482148808",
   },
@@ -35,7 +35,7 @@ export const studentPersonal = [
     name: "Martina",
     surname: "Maasdam",
     email: "Martina@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://i.pinimg.com/236x/72/c6/12/72c61278fb179d92da27efc2c54ba8c5--portrait-art-portrait-paintings.jpg",
   },
@@ -43,7 +43,7 @@ export const studentPersonal = [
     name: "Maurits",
     surname: "Maasdam",
     email: "maurits@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://cdn.shopify.com/s/files/1/1132/3228/products/CUstom-oil-portrait-fine-art-gift-for-men-boyfriend-husband-fiance-anniversary-gift-wedding-birthday-original-artwork-custom-art--Maria-Waye-Artist-in-Toronto-Canada-1_300c5ad6-9425-4497-87a7-6574a6cc2622.jpg?v=1482148808",
   },
@@ -51,7 +51,7 @@ export const studentPersonal = [
     name: "Rahima",
     surname: "Roquefort",
     email: "rahima@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://i.pinimg.com/236x/72/c6/12/72c61278fb179d92da27efc2c54ba8c5--portrait-art-portrait-paintings.jpg",
   },
@@ -59,7 +59,7 @@ export const studentPersonal = [
     name: "Sandra",
     surname: "Sloper",
     email: "sandra@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://i.pinimg.com/236x/72/c6/12/72c61278fb179d92da27efc2c54ba8c5--portrait-art-portrait-paintings.jpg",
   },
@@ -67,7 +67,7 @@ export const studentPersonal = [
     name: "Wietske",
     surname: "Willems",
     email: "wietske@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://i.pinimg.com/236x/72/c6/12/72c61278fb179d92da27efc2c54ba8c5--portrait-art-portrait-paintings.jpg",
   },
@@ -75,7 +75,7 @@ export const studentPersonal = [
     name: "Storm",
     surname: "Sadgfield",
     email: "stormn@jmail.com",
-    telephon: "06-12345678",
+    telephone: "06-12345678",
     picture:
       "https://cdn.shopify.com/s/files/1/1132/3228/products/CUstom-oil-portrait-fine-art-gift-for-men-boyfriend-husband-fiance-anniversary-gift-wedding-birthday-original-artwork-custom-art--Maria-Waye-Artist-in-Toronto-Canada-1_300c5ad6-9425-4497-87a7-6574a6cc2622.jpg?v=1482148808",
   },

@@ -2,9 +2,30 @@ import React from "react";
 import Chart from "react-apexcharts";
 import { useSelector } from "react-redux";
 
-const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
+const GeneralChart = ({ dataXY, title, subtitle }) => {
   const mode = useSelector((state) => state.reduxChart.graphStacked);
   const graphType = useSelector((state) => state.reduxChart.graphType);
+  const sorting = useSelector((state) => state.reduxChart.sorted);
+  const toUse = [...dataXY];
+  let dataToUse = "";
+
+  switch (sorting) {
+    case "normal":
+      dataToUse = toUse;
+      break;
+    case "difficulty":
+      dataToUse = toUse.sort((a, b) => b[1] - a[1]);
+      break;
+    case "fun":
+      dataToUse = toUse.sort((a, b) => b[2] - a[2]);
+      break;
+    default:
+      console.log("hallo");
+  }
+
+  const xAxis = dataToUse.map((name) => name[0]);
+  const difficultData = dataToUse.map((difficulty) => difficulty[1]);
+  const funData = dataToUse.map((fun) => fun[2]);
 
   return (
     <div style={{ borderBottom: "1px solid gray" }}>
@@ -12,24 +33,11 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
         options={{
           theme: { mode: "light" },
           chart: {
-            // toolbar: { show: true },
             stacked: mode,
-            // id: "HomeChart",
-            // tools: {
-            //   zoom: true,
-            //   zoomin: true,
-            //   pan: true,
-            //   reset: true,
-            // },
           },
           plotOptions: {
             bar: {
-              // borderRadius: 1,
               columnWidth: 70,
-
-              // dataLabels: {
-              //   orientation: "vertical",
-              // },
             },
           },
           tooltip: { followCursor: true },
@@ -39,6 +47,12 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
             //   return `${value}`;
             // },
             style: { colors: ["#000"], fontSize: 10 },
+          },
+          stroke: {
+            show: true,
+            curve: "smooth",
+            lineCap: "butt",
+            width: 3,
           },
 
           yaxis: {
@@ -60,10 +74,8 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
           },
           //
           xaxis: {
-            // tickPlacement: "on",
             categories: xAxis,
             labels: {
-              // trim: false,
               rotate: "-65",
               style: { color: "#000", fontSize: 15, fontWeight: "bold" },
               offsetY: 2,
@@ -76,9 +88,6 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
           },
           legend: {
             show: "true",
-            // position: "bottom",
-            // width: 110,
-            // height: 70,
             offsetX: 0,
             offsetY: 5,
           },
@@ -119,4 +128,3 @@ const GeneralChart = ({ xAxis, funData, difficultData, title, subtitle }) => {
 };
 
 export default GeneralChart;
-// https://www.youtube.com/watch?v=MK_52uhmcUc
