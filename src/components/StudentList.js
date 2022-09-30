@@ -10,8 +10,9 @@ const StudentList = () => {
   return (
     <>
       <GeneralChart
+        margin={200}
         dataXY={studentAvgData}
-        title={"Avarage Individual Scores"}
+        title={"Avarage Scores"}
         subtitle={"Per student"}
       />
     </>

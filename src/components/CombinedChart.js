@@ -1,33 +1,20 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import { useSelector } from "react-redux";
-
 import ChangeMode from "./ChangeMode";
+import { useLocation } from "react-router-dom";
 
-const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
-  const mode = useSelector((state) => state.reduxChart.graphStacked);
-  const graphType = useSelector((state) => state.reduxChart.graphType);
-  const sorting = useSelector((state) => state.reduxChart.sorted);
-  const toUse = [...dataXY];
-  let dataToUse = "";
+const CombinedChart = () => {
+  const location = useLocation();
+  console.log(location.state);
 
-  switch (sorting) {
-    case "normal":
-      dataToUse = toUse;
-      break;
-    case "difficulty":
-      dataToUse = toUse.sort((a, b) => b[1] - a[1]);
-      break;
-    case "fun":
-      dataToUse = toUse.sort((a, b) => b[2] - a[2]);
-      break;
-    default:
-      console.log("hallo");
-  }
-
-  const xAxis = dataToUse.map((name) => name[0]);
-  const difficultData = dataToUse.map((difficulty) => difficulty[1]);
-  const funData = dataToUse.map((fun) => fun[2]);
+  const mode = false;
+  const margin = 200;
+  const title = "";
+  const xAxis = [1, 2, 3];
+  const subtitle = "";
+  const funData = [1, 3, 4];
+  const difficultData = [4, 3, 2];
+  const graphType = "line";
 
   return (
     <div
@@ -138,4 +125,4 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
   );
 };
 
-export default GeneralChart;
+export default CombinedChart;

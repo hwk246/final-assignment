@@ -7,26 +7,43 @@ import {
   orderByAlphabeth,
 } from "../redux/features/homeChartSlice";
 
+const style = { margin: "10px", background: "white", padding: 5 };
+
 const ChangeMode = () => {
   const dispatch = useDispatch();
   return (
     <div
       style={{
+        // alignItems: "center",
+        position: "relative",
+        top: 22,
+        justifyContent: "right",
+        marginRight: 40,
         display: "flex",
-        flexDirection: "row",
         cursor: "pointer",
-        position: "absolute",
-        top: -12,
-        right: -10,
       }}
     >
-      <h5 onClick={() => dispatch(graphType("area"))}>Area-chart</h5>
-      <h5 onClick={() => dispatch(graphType("bar"))}>Bar-chart</h5>
-      <h5 onClick={() => dispatch(orderByFun("fun"))}>Fun</h5>
-      <h5 onClick={() => dispatch(orderByDifficult("difficulty"))}>
+      <h6 style={style} onClick={() => dispatch(graphType("area"))}>
+        Area-chart
+      </h6>
+      <h6 style={style} onClick={() => dispatch(graphType("line"))}>
+        Line-chart
+      </h6>
+      <h6 style={style} onClick={() => dispatch(graphType("bar"))}>
+        Bar-chart
+      </h6>
+      <h6 style={style} onClick={() => dispatch(orderByFun("fun"))}>
+        Fun
+      </h6>
+      <h6
+        style={style}
+        onClick={() => dispatch(orderByDifficult("difficulty"))}
+      >
         Difficulty
-      </h5>
-      <h5 onClick={() => dispatch(orderByAlphabeth("normal"))}>Alphabeth</h5>
+      </h6>
+      <h6 style={style} onClick={() => dispatch(orderByAlphabeth("normal"))}>
+        Alphabeth
+      </h6>
     </div>
   );
 };

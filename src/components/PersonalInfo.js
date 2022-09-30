@@ -1,36 +1,59 @@
 import React from "react";
 import { studentPersonal } from "../personal";
+import { useParams } from "react-router-dom";
 
-const PersonalInfo = (id) => {
-  const studentInfo = studentPersonal.filter((item) => item.name === id.id);
+const PersonalInfo = () => {
+  const { id } = useParams();
+  const studentInfo = studentPersonal.filter((item) => item.name === id);
 
   return (
     <div
       style={{
         display: "flex",
-        flexDirection: "row",
+        justifyContent: "space-evenly",
         alignItems: "center",
-        position: "absolute",
-        top: 20,
-        left: 300,
-        zIndex: 1,
-        width: 250,
-        boxShadow: "1px 1px 10px gray",
       }}
     >
-      <div style={{ marginRight: 10 }}>
-        <img
-          style={{ height: 90, marginLeft: 10 }}
-          src={studentInfo[0].picture}
-          alt="person"
-        ></img>
+      <div style={{ width: 300, padding: 50 }}>
+        <div>
+          <img
+            style={{ height: 150, marginLeft: 30 }}
+            src={studentInfo[0].picture}
+            alt="person"
+          ></img>
+        </div>
+        <div>
+          <h2>
+            {studentInfo[0].name} {studentInfo[0].surname}
+          </h2>
+          <h3> {studentInfo[0].email}</h3>
+          <h3>{studentInfo[0].telephone}</h3>
+        </div>
       </div>
-      <div>
-        <h4>
-          {studentInfo[0].name} {studentInfo[0].surname}
-        </h4>
-        <h5> {studentInfo[0].email}</h5>
-        <h5>{studentInfo[0].telephone}</h5>
+      <div
+        style={{
+          width: 700,
+          border: "1px solid gray",
+          padding: 35,
+          marginRight: 40,
+        }}
+      >
+        <h3>About</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex obcaecati,
+          vel saepe earum tempora inventore exercitationem assumenda officiis
+          aspernatur dignissimos maiores in quis quidem numquam suscipit dolore
+          perferendis et delectus.Lorem ipsum
+        </p>
+        <p>
+          necessitatibus vel libero facilis laboriosam natus neque aliquid
+          soluta aspernatur optio nobis! Et illo error quia. vel saepe earum
+          tempora inventore exercitationem assumenda officiis aspernatur
+          dignissimos maiores in quis quidem numquam suscipit dolore perferendis
+          et delectus.Lorem ipsum dolor sit amet consecteturvel saepe earum
+          tempora inventore exercitationem assumenda officiis aspernatur
+          dignissimos maiores in
+        </p>
       </div>
     </div>
   );

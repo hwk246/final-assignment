@@ -10,7 +10,8 @@ import NewStudent from "./components/NewStudent";
 import { Routes, Route, Link } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import StudentLayout from "./components/StudentLayout";
-import ChangeMode from "./components/ChangeMode";
+import PersonalInfo from "./components/PersonalInfo";
+import CombinedChart from "./components/CombinedChart";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,23 +28,23 @@ const App = () => {
     <LoadingSpinner />
   ) : (
     <>
+      {/* <Routes>
+        <Route path="/student/:id" element={"Extra content"} />
+      </Routes> */}
       <nav style={{ borderBottom: "1px solid gray", marginBottom: "25px" }}>
         <ul style={{ listStyle: "none", fontSize: 20, cursor: "pointer" }}>
-          <li style={{ marginBottom: 10 }}>
+          <li style={{ marginBottom: 10, marginLeft: 10 }}>
             <Link style={{ textDecoration: "none", marginBottom: 5 }} to="/">
               Homepage
             </Link>
           </li>
-          <li>
+          <li style={{ marginLeft: 10 }}>
             <Link style={{ textDecoration: "none" }} to="/student">
               Student
             </Link>
           </li>
         </ul>
       </nav>
-      <div style={{ position: "absolute", top: 70, right: 60 }}>
-        <ChangeMode />
-      </div>
 
       <Routes>
         <Route
@@ -59,8 +60,10 @@ const App = () => {
         <Route path="/student" element={<StudentLayout />}>
           <Route index element={<StudentList />} />
           <Route path=":id" element={<Student />} />
-          <Route path="new" element={<NewStudent />} />
+          <Route path="combined" element={<CombinedChart />} />
         </Route>
+        <Route path="/student/:id/personal" element={<PersonalInfo />} />
+        <Route path="/student/new" element={<NewStudent />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

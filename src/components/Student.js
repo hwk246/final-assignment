@@ -2,38 +2,38 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import GeneralChart from "./GeneralChart";
-import PersonalInfo from "./PersonalInfo";
+import { Link } from "react-router-dom";
+
+// import { useOutletContext } from "react-router-dom";
 
 const Student = () => {
   const { id } = useParams();
-  // const object = useOutletContext();
 
   const studentIndividualData = useSelector(
     (state) => state.reduxGetData.listByName[id]
   );
 
-  // const def = {
-  //   Evelyn: [
-  //     ["Scrum", 4, 5],
-  //     ["wd01", 3, 4],
-  //   ],
-  // };
-  // console.log(def);
-
-  // const abc = [
-  //   ["scrum", 2, 5, "Evelyn"],
-  //   ["wd01", 3, 4, "Aranka"],
-  // ];
-
   return (
-    <div>
-      <PersonalInfo id={id} />
+    <>
+      <Link
+        style={{
+          position: "absolute",
+          top: 60,
+          right: 50,
+          textDecoration: "none",
+        }}
+        to={`/student/${id}/personal`}
+        id={id}
+      >
+        personal information {id}
+      </Link>
       <GeneralChart
+        margin={200}
         dataXY={studentIndividualData}
-        title={`Individual scores `}
-        subtitle={""}
+        title={`Personal scores `}
+        subtitle={id}
       />
-    </div>
+    </>
   );
 };
 

@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Papa from "papaparse";
 
 export const getData = createAsyncThunk("getData/wsd1", async () => {
-  // payload creator
   try {
     const data = await fetch("../../../../wsd.csv");
     const textData = await data.text();
@@ -49,6 +48,14 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
 
     for (const item in listByName) {
       listByName[item].forEach((total) => total.shift());
+    }
+
+    for (const item in listByName) {
+      listByName[item].forEach((element) => {
+        if (element[0].length > 7) {
+          element[0] = element[0].substring(17);
+        }
+      });
     }
 
     const courseFunFactor = [];

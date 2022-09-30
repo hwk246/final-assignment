@@ -74,7 +74,7 @@ export const studentPersonal = [
   {
     name: "Storm",
     surname: "Sadgfield",
-    email: "stormn@jmail.com",
+    email: "storm@jmail.com",
     telephone: "06-12345678",
     picture:
       "https://cdn.shopify.com/s/files/1/1132/3228/products/CUstom-oil-portrait-fine-art-gift-for-men-boyfriend-husband-fiance-anniversary-gift-wedding-birthday-original-artwork-custom-art--Maria-Waye-Artist-in-Toronto-Canada-1_300c5ad6-9425-4497-87a7-6574a6cc2622.jpg?v=1482148808",

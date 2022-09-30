@@ -3,8 +3,18 @@
   /* background-color: rgb(255, 255, 255); */
 }
 
-h5 {
+/* h5 {
   text-align: center;
   width: 100px;
-  margin: 1;
+  margin: 1
+} */
+
+.testje {
+  transition: transform 1000ms ease-in-out;
+  transform: translateY(-320px);
+}
+
+.student-list-show {
+  transition: transform 1500ms ease-in-out;
+  visibility: hidden;
 }
