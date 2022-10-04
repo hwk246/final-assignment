@@ -1,25 +1,52 @@
 import React from "react";
-import Chart from "react-apexcharts";
-import ChangeMode from "./ChangeMode";
+// import GeneralChart from "./GeneralChart";
+// import Chart from "react-apexcharts";
+// import ChangeMode from "./ChangeMode";
 import { useLocation } from "react-router-dom";
+// import { useSelector } from "react-redux";
+import Chart from "react-apexcharts";
 
 const CombinedChart = () => {
   const location = useLocation();
-  console.log(location.state);
+  const inputData = location.state;
+  const allObjectKeys = Object.keys(inputData);
 
-  const mode = false;
-  const margin = 200;
-  const title = "";
-  const xAxis = [1, 2, 3];
-  const subtitle = "";
-  const funData = [1, 3, 4];
-  const difficultData = [4, 3, 2];
-  const graphType = "line";
+  // const toUse = location.state;
+
+  const series = [];
+
+  allObjectKeys.forEach((element) => {
+    const funny = [];
+    const difficulty = [];
+    inputData[element].forEach((item) => {
+      funny.push(item[2]);
+      difficulty.push(item[1]);
+    });
+    series.push(
+      {
+        name: `${element} difficulty`,
+        data: difficulty,
+        type: "line",
+        color: "#dfcfa2",
+      },
+      { name: `${element} fun`, data: funny, type: "line", color: "#6fbdfa" }
+    );
+  });
+
+  const xAx = [];
+
+  console.log(series);
+
+  const xAxis = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 30,
+    41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+  ];
 
   return (
     <div
       style={{
-        marginLeft: margin,
+        marginLeft: 200,
         borderBottom: "1px solid gray",
         marginBottom: 0,
       }}
@@ -27,9 +54,7 @@ const CombinedChart = () => {
       <Chart
         options={{
           theme: { mode: "light" },
-          chart: {
-            stacked: mode,
-          },
+
           plotOptions: {
             bar: {
               columnWidth: 70,
@@ -55,7 +80,7 @@ const CombinedChart = () => {
               offsetX: 0,
             },
             title: {
-              text: title,
+              text: "Combined Scores",
               style: { color: "#1e81b0", fontSize: 14 },
               offsetX: -8,
             },
@@ -73,8 +98,6 @@ const CombinedChart = () => {
                 fontSize: 11,
                 fontWeight: "400",
               },
-
-              // offsetY: 2,
             },
 
             title: {
@@ -90,37 +113,23 @@ const CombinedChart = () => {
             position: "top",
           },
           title: {
-            text: title,
+            text: "Combined Scores",
             align: "center",
             style: { fontSize: 22 },
           },
           subtitle: {
-            text: subtitle,
+            text: "-",
             align: "center",
             offsetY: 25,
 
             style: { fontSize: 20, color: "#1e81b0" },
           },
         }}
-        series={[
-          {
-            name: "Fun",
-            data: funData,
-            type: graphType,
-            color: "#6fbdfa",
-          },
-          {
-            name: "Dificulty",
-            data: difficultData,
-            type: graphType,
-            color: "#dfcfa2",
-          },
-        ]}
+        series={series}
         width="90%"
         height={"600px"}
         align="center"
       />
-      <ChangeMode />
     </div>
   );
 };

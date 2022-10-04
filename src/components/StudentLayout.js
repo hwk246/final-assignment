@@ -2,22 +2,53 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import CombinedChart from "./CombinedChart";
 
 const StudentLayout = () => {
   const studentName = useSelector((state) => state.reduxGetData.students);
+  const listByNameFromState = useSelector(
+    (state) => state.reduxGetData.listByName
+  );
 
-  const handleClick = () => {
+  // evemt for css animation
+  const handleClickPersonal = () => {
     document
       .getElementById("student-list")
       .classList.toggle("student-list-show");
-    document.getElementById("test").classList.toggle("testje");
+    document
+      .getElementById("combined-list")
+      .classList.toggle("combined-list-move");
   };
 
-  const [selectedName, setSelectedName] = useState([]);
+  const handleClickCombined = () => {
+    document
+      .getElementById("combined-list")
+      .classList.toggle("combined-list-show");
+  };
 
+  const [selectedName, setSelectedName] = useState({});
+
+  // useState registration of persons to combine chart
   const handleChange = (e) => {
-    setSelectedName([...selectedName, e.target.value]);
+    if (selectedName.length === 0) {
+      setSelectedName({
+        [e.target.value]: listByNameFromState[e.target.value],
+      });
+    } else {
+      if (!Object.keys(selectedName).includes(e.target.value)) {
+        setSelectedName({
+          ...selectedName,
+          [e.target.value]: listByNameFromState[e.target.value],
+        });
+      } else {
+        const remainList = {};
+        Object.keys(selectedName).forEach((item) => {
+          if (item !== e.target.value) {
+            remainList[item] = listByNameFromState[item];
+          }
+          setSelectedName(remainList);
+        });
+      }
+    }
   };
 
   return (
@@ -37,7 +68,7 @@ const StudentLayout = () => {
         }}
       >
         <h4
-          onClick={handleClick}
+          onClick={handleClickPersonal}
           style={{
             marginBottom: 15,
             fontWeight: 900,
@@ -68,22 +99,22 @@ const StudentLayout = () => {
             ))}
           </div>
         </div>
-        <div id="test">
+        <div>
           <h4
+            onClick={handleClickCombined}
             style={{
               marginBottom: 15,
               fontWeight: 900,
               borderBottom: "1px solid gray",
             }}
           >
-            <Link to={"/student/combined"} state={{ name: selectedName }}>
-              Combined Scores
-            </Link>
+            Combined Scores ;
           </h4>
-          <div style={{ width: 120, margin: 10 }}>
+          <div id="combined-list" style={{ width: 120, margin: 10 }}>
             {studentName.map((student, index) => (
-              <h3 key={index + 1} style={{ width: 120, margin: 10 }}>
+              <h3 key={index} style={{ width: 120, margin: 10 }}>
                 <input
+                  id={student}
                   type="checkbox"
                   value={student}
                   onChange={handleChange}
@@ -91,6 +122,9 @@ const StudentLayout = () => {
                 {student}
               </h3>
             ))}
+            <Link to={"/student/combined"} state={selectedName}>
+              <button>Combine scores</button>
+            </Link>
           </div>
         </div>
       </div>

@@ -121,6 +121,7 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
         });
       }
     }
+
     const stdFunAndDiffAvg = [];
     uniqueStudents.forEach((std, index) => {
       stdFunAndDiffAvg.push([

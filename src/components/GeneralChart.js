@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import ChangeMode from "./ChangeMode";
 
 const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
-  const mode = useSelector((state) => state.reduxChart.graphStacked);
   const graphType = useSelector((state) => state.reduxChart.graphType);
   const sorting = useSelector((state) => state.reduxChart.sorted);
   const toUse = [...dataXY];
-  let dataToUse = "";
+
+  let dataToUse = [];
 
   switch (sorting) {
     case "normal":
@@ -22,7 +22,7 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
       dataToUse = toUse.sort((a, b) => b[2] - a[2]);
       break;
     default:
-      console.log("hallo");
+      console.log("error General Chart");
   }
 
   const xAxis = dataToUse.map((name) => name[0]);
@@ -40,9 +40,7 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
       <Chart
         options={{
           theme: { mode: "light" },
-          chart: {
-            stacked: mode,
-          },
+
           plotOptions: {
             bar: {
               columnWidth: 70,
