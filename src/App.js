@@ -28,9 +28,6 @@ const App = () => {
     <LoadingSpinner />
   ) : (
     <>
-      {/* <Routes>
-        <Route path="/student/:id" element={"Extra content"} />
-      </Routes> */}
       <nav style={{ borderBottom: "1px solid gray", marginBottom: "25px" }}>
         <ul style={{ listStyle: "none", fontSize: 20, cursor: "pointer" }}>
           <li style={{ marginBottom: 10, marginLeft: 10 }}>

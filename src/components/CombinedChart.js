@@ -1,15 +1,45 @@
 import React from "react";
 // import GeneralChart from "./GeneralChart";
 // import Chart from "react-apexcharts";
-// import ChangeMode from "./ChangeMode";
-import { useLocation } from "react-router-dom";
-// import { useSelector } from "react-redux";
+
+// import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Chart from "react-apexcharts";
+import { useState } from "react";
 
 const CombinedChart = () => {
-  const location = useLocation();
-  const inputData = location.state;
+  const [selectedName, setSelectedName] = useState({});
+
+  const handleChange = (e) => {
+    if (selectedName.length === 0) {
+      setSelectedName({
+        [e.target.value]: listByNameFromState[e.target.value],
+      });
+    } else {
+      if (!Object.keys(selectedName).includes(e.target.value)) {
+        setSelectedName({
+          ...selectedName,
+          [e.target.value]: listByNameFromState[e.target.value],
+        });
+      } else {
+        const remainList = {};
+        Object.keys(selectedName).forEach((item) => {
+          if (item !== e.target.value) {
+            remainList[item] = listByNameFromState[item];
+          }
+          setSelectedName(remainList);
+        });
+      }
+    }
+  };
+
+  // const location = useLocation();
+  const inputData = selectedName;
   const allObjectKeys = Object.keys(inputData);
+  const listByNameFromState = useSelector(
+    (state) => state.reduxGetData.listByName
+  );
+  const studentName = useSelector((state) => state.reduxGetData.students);
 
   // const toUse = location.state;
 
@@ -33,10 +63,6 @@ const CombinedChart = () => {
     );
   });
 
-  const xAx = [];
-
-  console.log(series);
-
   const xAxis = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 30,
@@ -47,10 +73,39 @@ const CombinedChart = () => {
     <div
       style={{
         marginLeft: 200,
-        borderBottom: "1px solid gray",
+        // borderBottom: "1px solid gray",
         marginBottom: 0,
       }}
     >
+      <div
+        style={{
+          // border: "1px solid gray",
+          display: "inline",
+          position: "absolute",
+          top: 186,
+        }}
+      >
+        {studentName.map((student, index) => (
+          <div style={{ marginBottom: 8 }} key={index}>
+            <input
+              id={student}
+              type="checkbox"
+              value={student}
+              onChange={handleChange}
+            />
+            <h3
+              style={{
+                display: "inline",
+                fontSize: 15,
+                margin: 20,
+              }}
+            >
+              {/* {student} */}
+            </h3>
+          </div>
+        ))}
+      </div>
+
       <Chart
         options={{
           theme: { mode: "light" },
