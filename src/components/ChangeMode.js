@@ -7,14 +7,17 @@ import {
   orderByAlphabeth,
 } from "../redux/features/homeChartSlice";
 
-const style = { margin: "10px", background: "white", padding: 5 };
+const style = {
+  margin: "10px",
+  padding: 5,
+  background: "#0f1453",
+};
 
 const ChangeMode = () => {
   const dispatch = useDispatch();
   return (
     <div
       style={{
-        // alignItems: "center",
         position: "relative",
         top: 22,
         justifyContent: "right",

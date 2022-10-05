@@ -1,10 +1,30 @@
 * {
   font-family: "Comfortaa", cursive;
-  /* background-color: rgb(255, 255, 255); */
+  background-color: #0f1453;
+
+  color: #85c1f1;
 }
 
-/* h5 {
-  text-align: center;
-  width: 100px;
-  margin: 1
-} */
+h1 {
+  color: red;
+  margin-left: 50px;
+  display: inline-block;
+  position: absolute;
+  font-size: 40px;
+}
+
+nav {
+  border-bottom: 1px solid gray;
+  margin-bottom: 25px;
+}
+
+nav ul {
+  display: inline-block;
+  list-style: none;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+Link {
+  text-decoration: none;
+}

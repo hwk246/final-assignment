@@ -1,7 +1,6 @@
 import React from "react";
 import Chart from "react-apexcharts";
 import { useSelector } from "react-redux";
-
 import ChangeMode from "./ChangeMode";
 
 const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
@@ -39,7 +38,7 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
     >
       <Chart
         options={{
-          theme: { mode: "light" },
+          theme: { mode: "dark" },
 
           plotOptions: {
             bar: {
@@ -62,7 +61,7 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
             max: 5,
             tickAmount: 5,
             labels: {
-              style: { colors: ["#000"], fontSize: 15 },
+              style: { colors: ["#fff"], fontSize: 15 },
               offsetX: 0,
             },
             title: {
@@ -84,10 +83,7 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
                 fontSize: 11,
                 fontWeight: "400",
               },
-
-              // offsetY: 2,
             },
-
             title: {
               text: "",
               style: { color: "##063970", fontSize: 20 },
@@ -118,13 +114,13 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
             name: "Fun",
             data: funData,
             type: graphType,
-            color: "#6fbdfa",
+            color: "#bb550c",
           },
           {
             name: "Dificulty",
             data: difficultData,
             type: graphType,
-            color: "#dfcfa2",
+            color: "#79f315",
           },
         ]}
         width="90%"

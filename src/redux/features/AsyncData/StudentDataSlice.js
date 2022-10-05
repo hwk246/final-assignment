@@ -132,12 +132,14 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     });
 
     const students = uniqueStudents,
+      courses = uniqueCoursesShort,
       totalByName = listByName,
       avgStudentFunAndDiff = stdFunAndDiffAvg,
       avgCourseFunAndDiff = crsFunAndDiffAvg;
 
     return {
       students,
+      courses,
       totalByName,
       avgStudentFunAndDiff,
       avgCourseFunAndDiff,
@@ -163,6 +165,7 @@ const getDataSlice = createSlice({
 
     [getData.fulfilled]: (state, { payload }) => {
       state.listByName = payload.totalByName;
+      state.courses = payload.courses;
       state.students = payload.students;
       state.avgStudFunAndDiff = payload.avgStudentFunAndDiff;
       state.avgCrsFunAndDiff = payload.avgCourseFunAndDiff;
