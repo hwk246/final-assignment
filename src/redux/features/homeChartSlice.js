@@ -2,17 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const homeChartSlice = createSlice({
   name: "reduxChart",
-  initialState: { graphStacked: false, graphType: "bar", sorted: "normal" },
+  initialState: { graphType: "bar", sorted: "normal" },
 
   reducers: {
-    graphStacked: (state) => {
-      state.graphStacked = !state.graphStacked;
-    },
-
     graphType: (state, { payload }) => {
       state.graphType = payload;
     },
-
     orderByFun: (state, { payload }) => {
       state.sorted = payload;
     },
@@ -26,10 +21,5 @@ const homeChartSlice = createSlice({
 });
 
 export default homeChartSlice.reducer;
-export const {
-  graphStacked,
-  graphType,
-  orderByFun,
-  orderByDifficult,
-  orderByAlphabeth,
-} = homeChartSlice.actions;
+export const { graphType, orderByFun, orderByDifficult, orderByAlphabeth } =
+  homeChartSlice.actions;

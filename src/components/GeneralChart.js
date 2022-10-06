@@ -38,8 +38,6 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
     <div
       style={{
         marginLeft: margin,
-        borderBottom: "1px solid gray",
-        marginBottom: 0,
       }}
     >
       <Chart
@@ -59,7 +57,12 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
           stroke: {
             show: true,
             curve: "smooth",
-            width: 3,
+            width: 4,
+          },
+
+          grid: {
+            borderColor: "#69a0c5",
+            strokeDashArray: 3,
           },
 
           yaxis: {
@@ -112,7 +115,7 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
             align: "center",
             offsetY: 25,
 
-            style: { fontSize: 20, color: "#1e81b0" },
+            style: { fontSize: 20, color: "#85c1f1" },
           },
         }}
         series={[
@@ -120,13 +123,13 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
             name: "Fun",
             data: funData,
             type: type,
-            color: "#bb550c",
+            color: "#79f315",
           },
           {
             name: "Dificulty",
             data: difficultData,
             type: type,
-            color: "#79f315",
+            color: "#bb550c",
           },
         ]}
         width="90%"

@@ -10,13 +10,14 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
       dynamicTyping: true,
     }).data.slice(1);
 
+    ////
     const allStudents = [];
     arrayData.forEach((element) => {
       allStudents.push(element[0]);
     });
 
     const uniqueStudents = [...new Set(allStudents)];
-
+    ////
     const allCourses = [];
     arrayData.forEach((element) => {
       allCourses.push(element[1]);
@@ -26,7 +27,7 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     const uniqueCoursesShort = uniqueCourses.map((coursNameLong) =>
       coursNameLong.length > 6 ? coursNameLong.slice(16) : coursNameLong
     );
-
+    ////
     const arrayByCourse = [];
     uniqueCourses.forEach((course) =>
       arrayByCourse.push(arrayData.filter((element) => element[1] === course))
@@ -35,7 +36,7 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     for (let i = 0; i < uniqueCourses.length; i++) {
       listByCourse[uniqueCourses[i]] = arrayByCourse[i];
     }
-
+    ///
     const arrayByName = [];
     uniqueStudents.forEach((student) =>
       arrayByName.push(arrayData.filter((element) => element[0] === student))
@@ -45,7 +46,7 @@ export const getData = createAsyncThunk("getData/wsd1", async () => {
     for (let i = 0; i < uniqueStudents.length; i++) {
       listByName[uniqueStudents[i]] = arrayByName[i];
     }
-
+    ////
     for (const item in listByName) {
       listByName[item].forEach((total) => total.shift());
     }

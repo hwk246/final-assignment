@@ -6,14 +6,14 @@ import { Outlet } from "react-router-dom";
 const StudentNames = () => {
   const studentName = useSelector((state) => state.reduxGetData.students);
   return (
-    <div>
+    <>
       <div
         style={{
           width: 180,
           display: "flex",
           flexDirection: "column",
           position: "absolute",
-          top: 270,
+          top: 280,
         }}
       >
         {studentName.map((student, index) => (
@@ -32,7 +32,7 @@ const StudentNames = () => {
       </div>
 
       <Outlet />
-    </div>
+    </>
   );
 };
 

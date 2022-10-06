@@ -9,7 +9,7 @@ const StudentLayout = () => {
           marginLeft: 10,
           display: "flex",
           float: "right",
-          width: 180,
+          width: 230,
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",

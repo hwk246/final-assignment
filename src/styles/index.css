@@ -1,21 +1,23 @@
 * {
   font-family: "Comfortaa", cursive;
   background-color: #0b1050;
-
   color: #85c1f1;
 }
 
+body {
+  margin: 10px;
+}
 h1 {
-  color: red;
-  margin-left: 50px;
+  color: #bb550c;
+  margin-left: 150px;
   display: inline-block;
   position: absolute;
-  font-size: 40px;
+  font-size: 45px;
 }
 
 nav {
   border-bottom: 1px solid gray;
-  margin-bottom: 25px;
+  margin-bottom: 40px;
 }
 
 nav ul {

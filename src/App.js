@@ -33,7 +33,7 @@ const App = () => {
         <ul>
           <li style={{ marginBottom: 10 }}>
             <Link style={style} to="/">
-              Courses
+              Home
             </Link>
           </li>
           <li>

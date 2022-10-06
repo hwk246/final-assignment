@@ -11,7 +11,7 @@ const Student = () => {
     (state) => state.reduxGetData.listByName[id]
   );
 
-  let studentIndividual = [["", 0, 0]];
+  let studentIndividual = [["", "", ""]];
 
   if (id !== "option") {
     studentIndividual = studentIndividualData;

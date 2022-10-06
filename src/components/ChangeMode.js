@@ -10,7 +10,7 @@ import {
 const style = {
   margin: "10px",
   padding: 5,
-  background: "#0f1453",
+  cursor: "pointer",
 };
 
 const ChangeMode = () => {
@@ -18,14 +18,14 @@ const ChangeMode = () => {
   return (
     <div
       style={{
-        position: "relative",
-        top: 22,
-        justifyContent: "right",
-        marginRight: 40,
+        background: "#0f1453",
         display: "flex",
-        cursor: "pointer",
+        justifyContent: "right",
+        alignItems: "center",
+        border: "1px solid gray",
       }}
     >
+      <h4>GraphType:</h4>
       <h6 style={style} onClick={() => dispatch(graphType("area"))}>
         Area-chart
       </h6>
@@ -35,6 +35,7 @@ const ChangeMode = () => {
       <h6 style={style} onClick={() => dispatch(graphType("bar"))}>
         Bar-chart
       </h6>
+      <h4 style={{ marginLeft: 30 }}>Sorting:</h4>
       <h6 style={style} onClick={() => dispatch(orderByFun("fun"))}>
         Fun
       </h6>
@@ -44,8 +45,11 @@ const ChangeMode = () => {
       >
         Difficulty
       </h6>
-      <h6 style={style} onClick={() => dispatch(orderByAlphabeth("normal"))}>
-        Alphabeth
+      <h6
+        style={{ marginRight: 130, cursor: "pointer" }}
+        onClick={() => dispatch(orderByAlphabeth("normal"))}
+      >
+        Alphabethical
       </h6>
     </div>
   );

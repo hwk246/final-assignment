@@ -35,7 +35,6 @@ const CombinedChart = () => {
   const handleSelector = () => {
     setSelection(!selection);
   };
-
   const xAxis = useSelector((state) => state.reduxGetData.courses);
   const inputData = selectedName;
   const allObjectKeys = Object.keys(inputData);
@@ -43,9 +42,7 @@ const CombinedChart = () => {
     (state) => state.reduxGetData.listByName
   );
   const studentName = useSelector((state) => state.reduxGetData.students);
-
   const series = [];
-
   let subtitle = "";
 
   if (selection) {
@@ -55,7 +52,7 @@ const CombinedChart = () => {
         funny.push(item[2]);
       });
       series.push({
-        name: `${element} fun`,
+        name: element,
         data: funny,
         type: "area",
       });
@@ -68,17 +65,17 @@ const CombinedChart = () => {
         difficulty.push(item[1]);
       });
       series.push({
-        name: `${element} difficulty`,
+        name: element,
         data: difficulty,
         type: "area",
       });
-      subtitle = "Difficult";
+      subtitle = "Difficulty";
     });
   }
 
   return (
     <>
-      <div style={{ position: "absolute", top: 273, left: 170 }}>
+      <div style={{ position: "absolute", top: 280, left: 170 }}>
         {studentName.map((student, index) => (
           <div style={{ marginBottom: 13 }} key={index}>
             <input
@@ -90,7 +87,21 @@ const CombinedChart = () => {
           </div>
         ))}
         <div>
-          <button onClick={handleSelector}>Compare Fun or Difficulty</button>
+          <h4
+            style={{
+              color: "#fff",
+              position: "relative",
+              right: 140,
+              top: 30,
+              border: "1px solid gray",
+              padding: 5,
+            }}
+            onClick={handleSelector}
+          >
+            {selection === true
+              ? "Select Difficulty factor"
+              : "Select Fun factor"}
+          </h4>
         </div>
       </div>
 
@@ -165,7 +176,7 @@ const CombinedChart = () => {
               align: "center",
               offsetY: 25,
 
-              style: { fontSize: 20, color: "#1e81b0" },
+              style: { fontSize: 20, color: "#85c1f1" },
             },
           }}
           series={series}
