@@ -2,9 +2,11 @@ import React from "react";
 import Chart from "react-apexcharts";
 import { useSelector } from "react-redux";
 import ChangeMode from "./ChangeMode";
+import { orderByFun } from "../redux/features/homeChartSlice";
+import { graphType } from "../redux/features/homeChartSlice";
 
 const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
-  const graphType = useSelector((state) => state.reduxChart.graphType);
+  const type = useSelector((state) => state.reduxChart.graphType);
   const sorting = useSelector((state) => state.reduxChart.sorted);
   const toUse = [...dataXY];
 
@@ -27,6 +29,10 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
   const xAxis = dataToUse.map((name) => name[0]);
   const difficultData = dataToUse.map((difficulty) => difficulty[1]);
   const funData = dataToUse.map((fun) => fun[2]);
+  orderByFun("fun");
+  graphType("area");
+  const test = useSelector((state) => state.reduxGetData.graphType);
+  console.log(test);
 
   return (
     <div
@@ -113,13 +119,13 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
           {
             name: "Fun",
             data: funData,
-            type: graphType,
+            type: type,
             color: "#bb550c",
           },
           {
             name: "Dificulty",
             data: difficultData,
-            type: graphType,
+            type: type,
             color: "#79f315",
           },
         ]}

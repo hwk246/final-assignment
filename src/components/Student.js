@@ -26,7 +26,7 @@ const Student = () => {
           right: 50,
           textDecoration: "none",
         }}
-        to={`/student/${id}/personal`}
+        to={`/student/personal/${id}/info`}
       >
         {id === "option" ? "" : <h3>Personal information {id}</h3>}
       </Link>

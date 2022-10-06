@@ -59,12 +59,13 @@ const App = () => {
         <Route path="/student" element={<StudentLayout />}>
           <Route index element={<StudentList />} />
           <Route path="personal" element={<StudentNames />}>
-            <Route path=":id" element={<Student />} />
+            <Route path=":id">
+              <Route index element={<Student />} />
+              <Route path="info" element={<PersonalInfo />} />
+            </Route>
             <Route path="combined" element={<CombinedChart />} />
           </Route>
         </Route>
-
-        <Route path="/student/:id/personal" element={<PersonalInfo />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

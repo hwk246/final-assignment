@@ -6,6 +6,7 @@ import { useState } from "react";
 const CombinedChart = () => {
   const [selectedName, setSelectedName] = useState({});
   const [theme, setTheme] = useState("light");
+  const [selection, setSelection] = useState(true);
 
   const handleChange = (e) => {
     setTheme("dark");
@@ -30,6 +31,11 @@ const CombinedChart = () => {
       }
     }
   };
+
+  const handleSelector = () => {
+    setSelection(!selection);
+  };
+
   const xAxis = useSelector((state) => state.reduxGetData.courses);
   const inputData = selectedName;
   const allObjectKeys = Object.keys(inputData);
@@ -40,23 +46,35 @@ const CombinedChart = () => {
 
   const series = [];
 
-  allObjectKeys.forEach((element) => {
-    const funny = [];
-    const difficulty = [];
-    inputData[element].forEach((item) => {
-      funny.push(item[2]);
-      difficulty.push(item[1]);
+  let subtitle = "";
+
+  if (selection) {
+    allObjectKeys.forEach((element) => {
+      const funny = [];
+      inputData[element].forEach((item) => {
+        funny.push(item[2]);
+      });
+      series.push({
+        name: `${element} fun`,
+        data: funny,
+        type: "area",
+      });
+      subtitle = "Fun";
     });
-    series.push(
-      {
+  } else {
+    allObjectKeys.forEach((element) => {
+      const difficulty = [];
+      inputData[element].forEach((item) => {
+        difficulty.push(item[1]);
+      });
+      series.push({
         name: `${element} difficulty`,
         data: difficulty,
-        type: "line",
-        color: "#dfcfa2",
-      },
-      { name: `${element} fun`, data: funny, type: "line", color: "#6fbdfa" }
-    );
-  });
+        type: "area",
+      });
+      subtitle = "Difficult";
+    });
+  }
 
   return (
     <>
@@ -71,6 +89,9 @@ const CombinedChart = () => {
             />
           </div>
         ))}
+        <div>
+          <button onClick={handleSelector}>Compare Fun or Difficulty</button>
+        </div>
       </div>
 
       <div style={{ marginLeft: 200 }}>
@@ -140,7 +161,7 @@ const CombinedChart = () => {
               style: { fontSize: 22 },
             },
             subtitle: {
-              text: "-",
+              text: subtitle,
               align: "center",
               offsetY: 25,
 

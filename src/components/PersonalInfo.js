@@ -14,7 +14,12 @@ const PersonalInfo = () => {
         alignItems: "center",
       }}
     >
-      <div style={{ width: 300, padding: 50 }}>
+      <div
+        style={{
+          padding: 30,
+          marginLeft: 250,
+        }}
+      >
         <div>
           <img
             style={{ height: 150, marginLeft: 30 }}
@@ -32,7 +37,7 @@ const PersonalInfo = () => {
       </div>
       <div
         style={{
-          width: 700,
+          width: 600,
           border: "1px solid gray",
           padding: 35,
           marginRight: 40,
