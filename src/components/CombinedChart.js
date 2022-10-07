@@ -122,7 +122,12 @@ const CombinedChart = () => {
             stroke: {
               show: true,
               curve: "smooth",
-              width: 3,
+              width: 4,
+            },
+
+            grid: {
+              borderColor: "#69a0c5",
+              strokeDashArray: 3,
             },
 
             yaxis: {
@@ -130,12 +135,16 @@ const CombinedChart = () => {
               max: 5,
               tickAmount: 5,
               labels: {
-                style: { colors: ["#fff"], fontSize: 15 },
+                style: { colors: ["#85c1f1"], fontSize: 15 },
                 offsetX: 0,
               },
               title: {
                 text: "Combined Scores",
-                style: { color: "#1e81b0", fontSize: 14 },
+                style: {
+                  color: "#1e81b0",
+                  fontSize: 14,
+                  fontFamily: "Comfortaa",
+                },
                 offsetX: -8,
               },
             },
@@ -148,7 +157,7 @@ const CombinedChart = () => {
                 trim: true,
                 rotate: "-60",
                 style: {
-                  color: "#000",
+                  color: "#85c1f1",
                   fontSize: 11,
                   fontWeight: "400",
                 },
@@ -156,7 +165,7 @@ const CombinedChart = () => {
 
               title: {
                 text: "",
-                style: { color: "##063970", fontSize: 20 },
+                style: { color: "#85c1f1", fontSize: 20 },
                 offsetY: -20,
               },
             },
@@ -169,7 +178,11 @@ const CombinedChart = () => {
             title: {
               text: "Combined Scores",
               align: "center",
-              style: { fontSize: 22 },
+              style: {
+                fontSize: 22,
+                color: "#85c1f1",
+                fontFamily: "Comfortaa",
+              },
             },
             subtitle: {
               text: subtitle,

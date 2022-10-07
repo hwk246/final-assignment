@@ -1,6 +1,6 @@
 * {
   font-family: "Comfortaa", cursive;
-  background-color: #0b1050;
+  background-color: #0b0f47;
   color: #85c1f1;
 }
 
@@ -8,11 +8,32 @@ body {
   margin: 10px;
 }
 h1 {
-  color: #bb550c;
-  margin-left: 150px;
-  display: inline-block;
+  font-family: "Nanum Pen Script", cursive;
+  color: #3c4996;
+  float: right;
+  padding-right: 100px;
+  font-size: 80px;
+  opacity: 0.7;
+  margin: 0;
+  margin-right: 180px;
+  transform: rotateZ(-2deg);
+}
+h1::before {
+  content: "'";
+  font-size: 150px;
   position: absolute;
-  font-size: 45px;
+  color: rgb(25, 87, 255);
+  transform: translateX(-100px);
+  opacity: 0.3;
+}
+
+h1::after {
+  content: "-";
+  font-size: 150px;
+  position: absolute;
+  color: rgb(25, 87, 255);
+  transform: translateX(-30px);
+  opacity: 0.3;
 }
 
 nav {
@@ -23,7 +44,7 @@ nav {
 nav ul {
   display: inline-block;
   list-style: none;
-  font-size: 23px;
+  font-size: 25px;
   cursor: pointer;
 }
 

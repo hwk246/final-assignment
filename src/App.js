@@ -51,7 +51,7 @@ const App = () => {
           element={
             <GeneralChart
               dataXY={CourseAvgData}
-              title={"Avarage Difficulty & Fun"}
+              title={"Average Difficulty & Fun"}
               subtitle={"All students per assignment"}
             />
           }

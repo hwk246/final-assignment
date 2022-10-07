@@ -3,18 +3,17 @@ import { Link, Outlet } from "react-router-dom";
 
 const StudentLayout = () => {
   return (
-    <div>
+    <>
       <div
         style={{
-          marginLeft: 10,
           display: "flex",
-          float: "right",
           width: 230,
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
           position: "absolute",
-          top: 120,
+          top: 150,
+          left: -5,
         }}
       >
         <Link
@@ -24,7 +23,6 @@ const StudentLayout = () => {
           <h3
             style={{
               marginBottom: 15,
-              fontWeight: 900,
             }}
           >
             Personal Scores
@@ -38,7 +36,6 @@ const StudentLayout = () => {
           <h3
             style={{
               marginBottom: 15,
-              fontWeight: 900,
             }}
           >
             Combined Scores
@@ -49,7 +46,7 @@ const StudentLayout = () => {
       <div>
         <Outlet />
       </div>
-    </div>
+    </>
   );
 };
 

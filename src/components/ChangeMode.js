@@ -8,6 +8,7 @@ import {
 } from "../redux/features/homeChartSlice";
 
 const style = {
+  background: "#0f1453",
   margin: "10px",
   padding: 5,
   cursor: "pointer",
@@ -22,7 +23,6 @@ const ChangeMode = () => {
         display: "flex",
         justifyContent: "right",
         alignItems: "center",
-        border: "1px solid gray",
       }}
     >
       <h4>GraphType:</h4>
@@ -35,7 +35,7 @@ const ChangeMode = () => {
       <h6 style={style} onClick={() => dispatch(graphType("bar"))}>
         Bar-chart
       </h6>
-      <h4 style={{ marginLeft: 30 }}>Sorting:</h4>
+      <h4 style={{ marginLeft: 30, background: "#0f1453" }}>Sorting:</h4>
       <h6 style={style} onClick={() => dispatch(orderByFun("fun"))}>
         Fun
       </h6>
@@ -46,7 +46,12 @@ const ChangeMode = () => {
         Difficulty
       </h6>
       <h6
-        style={{ marginRight: 130, cursor: "pointer" }}
+        style={{
+          marginRight: 130,
+          marginLeft: 20,
+          cursor: "pointer",
+          background: "#0f1453",
+        }}
         onClick={() => dispatch(orderByAlphabeth("normal"))}
       >
         Alphabethical

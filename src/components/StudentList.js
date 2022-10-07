@@ -12,7 +12,7 @@ const StudentList = () => {
       <GeneralChart
         margin={200}
         dataXY={studentAvgData}
-        title={"Avarage Scores"}
+        title={"Average Scores"}
         subtitle={"Per student"}
       />
     </>

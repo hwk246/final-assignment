@@ -1,11 +1,17 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import GeneralChart from "./GeneralChart";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { graphType } from "../redux/features/homeChartSlice";
+import { orderByFun } from "../redux/features/homeChartSlice";
 
 const Student = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  dispatch(graphType("line"));
+  dispatch(orderByFun("fun"));
 
   const studentIndividualData = useSelector(
     (state) => state.reduxGetData.listByName[id]
@@ -21,10 +27,12 @@ const Student = () => {
     <>
       <Link
         style={{
-          position: "absolute",
-          top: 50,
-          right: 50,
+          position: "relative",
+          left: 300,
+          top: 675,
+          display: "inline-block",
           textDecoration: "none",
+          background: "#0f1453",
         }}
         to={`/student/personal/${id}/info`}
       >

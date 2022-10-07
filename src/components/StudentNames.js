@@ -30,7 +30,6 @@ const StudentNames = () => {
           </Link>
         ))}
       </div>
-
       <Outlet />
     </>
   );

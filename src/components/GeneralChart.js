@@ -34,16 +34,29 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
   const test = useSelector((state) => state.reduxGetData.graphType);
   console.log(test);
 
+  const serie = [
+    {
+      name: "Fun",
+      data: funData,
+      type: type,
+      color: "#79f315",
+    },
+    {
+      name: "Dificulty",
+      data: difficultData,
+      type: type,
+      color: "#bb550c",
+    },
+  ];
+
   return (
-    <div
-      style={{
-        marginLeft: margin,
-      }}
-    >
+    <div>
       <Chart
+        style={{
+          marginLeft: margin,
+        }}
         options={{
           theme: { mode: "dark" },
-
           plotOptions: {
             bar: {
               columnWidth: 70,
@@ -70,12 +83,16 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
             max: 5,
             tickAmount: 5,
             labels: {
-              style: { colors: ["#fff"], fontSize: 15 },
+              style: { colors: ["#85c1f1"], fontSize: 15 },
               offsetX: 0,
             },
             title: {
               text: title,
-              style: { color: "#1e81b0", fontSize: 14 },
+              style: {
+                color: "#85c1f1",
+                fontSize: 14,
+                fontFamily: "Comfortaa",
+              },
               offsetX: -8,
             },
           },
@@ -88,14 +105,14 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
               trim: true,
               rotate: "-60",
               style: {
-                color: "#000",
+                color: "#85c1f1",
                 fontSize: 11,
                 fontWeight: "400",
               },
             },
             title: {
               text: "",
-              style: { color: "##063970", fontSize: 20 },
+              style: { color: "#85c1f1", fontSize: 20 },
               offsetY: -20,
             },
           },
@@ -108,30 +125,16 @@ const GeneralChart = ({ margin, dataXY, title, subtitle }) => {
           title: {
             text: title,
             align: "center",
-            style: { fontSize: 22 },
+            style: { fontSize: 22, color: "#85c1f1", fontFamily: "Comfortaa" },
           },
           subtitle: {
             text: subtitle,
             align: "center",
             offsetY: 25,
-
-            style: { fontSize: 20, color: "#85c1f1" },
+            style: { fontSize: 15, color: "#85c1f1" },
           },
         }}
-        series={[
-          {
-            name: "Fun",
-            data: funData,
-            type: type,
-            color: "#79f315",
-          },
-          {
-            name: "Dificulty",
-            data: difficultData,
-            type: type,
-            color: "#bb550c",
-          },
-        ]}
+        series={serie}
         width="90%"
         height={"600px"}
         align="center"
